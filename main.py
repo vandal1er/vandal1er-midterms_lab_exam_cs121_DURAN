@@ -39,9 +39,8 @@ def GetInput(max, message="Enter choice (leave blank to cancel): ", min=1):
 			return "error"
 			
 #for vertical spacing
-def Spaces(amount, clear=True):
-    if clear:
-        os.system('cls' if os.name == 'nt' else 'clear')
+def Clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 
@@ -72,7 +71,7 @@ def check_credentials(username, password):
 
 def Login():
 	while True:
-		Spaces(spaces)
+		Clear()
 		Header("Log in")
 		username = input("Username: ")
 		pw = input("Password: ")
@@ -87,7 +86,7 @@ def Login():
 			
 			
 def display_available_games():
-	Spaces(spaces)
+	Clear()
 	Header("Available Games")	
 	for game in game_library:
 		print(f"- {game}")
@@ -98,7 +97,7 @@ def display_available_games():
 
 
 def rent_game(username):
-	Spaces(spaces)
+	Clear()
 	Header("Rent Game")
 	for game in game_library:
 		print(f"- {game}")
@@ -111,13 +110,13 @@ def rent_game(username):
 			input("This game currently has no available copies.\nPlease ask the administrator to upload more copies or wait for\nrented copies to be returned.\nPress Enter to continue.")
 			return
 		
-		Spaces(spaces)
+		Clear()
 		Header(select)
 		print(f"Copies: {game_library[select]['quantity']}")
 		print(f"Price: ${game_library[select]['cost']}\n")
 		
 		print("1 Rent")
-		print("2 Redeem")
+		print(f"2 Redeem for 3 points (You have {user_accounts[username]['points']})")
 		
 		choice = GetInput(2)
 		
@@ -148,7 +147,7 @@ def rent_game(username):
 
 
 def top_up_account(username):
-	Spaces(spaces)
+	Clear()
 	Header("Top Up")
 	amount = GetInput(9999999, "Enter the amount you wish to top up: ")
 	
@@ -163,14 +162,14 @@ def top_up_account(username):
 	input(f"Successfully topped up ${amount}!\nPress Enter to continue.")
 
 def display_inventory(username):
-	Spaces(spaces)
+	Clear()
 	Header("Balance and Points")
 	print(f"Balance: ${user_accounts[username]['balance']}")
 	print(f"Points:  {user_accounts[username]['points']}")
 	input("\nPress Enter to continue...")
 
 def display_games_inventory(username):
-	Spaces(spaces)
+	Clear()
 	Header("Rented Games")
 	
 	if len(user_accounts[username]['games']) <= 0:
@@ -184,7 +183,7 @@ def display_games_inventory(username):
 
 
 def return_game(username):
-	Spaces(spaces)
+	Clear()
 	Header("Return Game")
 	if len(user_accounts[username]['games']) <= 0:
 		input("No rented games.\nPress Enter to continue.")
@@ -206,7 +205,7 @@ def return_game(username):
 
 def logged_in_menu(username):
 	while True:
-		Spaces(spaces)
+		Clear()
 		Header("User Menu")
 		print("1 View All Games")
 		print("2 Rent Games")
@@ -245,7 +244,7 @@ def logged_in_menu(username):
 			return
 
 def EditGame():
-	Spaces(spaces)
+	Clear()
 	Header("Edit Game")
 	
 	name = input("Game title: ")
@@ -266,7 +265,7 @@ def EditGame():
 		
 
 def AddGame():
-	Spaces(spaces)
+	Clear()
 	Header("Add Game")
 	name = input("Game title: ")
 	
@@ -292,7 +291,7 @@ def AddGame():
 
 def admin_menu():
 	while True:
-		Spaces(spaces)
+		Clear()
 		Header("Admin Menu")
 		
 		print("1 Add Game")
@@ -319,7 +318,7 @@ def admin_menu():
 			return
 
 def admin_login():
-	Spaces(spaces)
+	Clear()
 	Header("Admin Login")
 	name = input("Username: ")
 	pw = input("Password: ")
@@ -333,7 +332,7 @@ def admin_login():
 
 def register_user():
 	while True:
-		Spaces(spaces)
+		Clear()
 		Header("Sign up")
 		username = input("Username: ")
 		
@@ -348,8 +347,9 @@ def register_user():
 			
 
 def main():
+    
 	while True:
-
+		Clear()
 		Header("Main Menu")
 		print("1 Sign up")
 		print("2 Log in")
@@ -371,7 +371,7 @@ def main():
 			admin_login()
 			
 		
-		Spaces(spaces)
+		
 
 
 
